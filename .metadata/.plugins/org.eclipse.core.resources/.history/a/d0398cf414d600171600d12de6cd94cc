@@ -1,0 +1,97 @@
+package homework1;
+
+import java.awt.*;
+import java.util.Random;
+
+import homework1.Shape;
+
+
+/**
+ * A ColorAndLocationChaningShape is a Shape that can change its location and color using its step()
+ * method.
+ * Thus, a typical LocationChaningShape consists of the following set of
+ * properties: {location, color, shape, size, velocity}
+ */
+public abstract class ColorAndLocationChangingShape extends LocationChangingShape{
+
+    // Abstraction Function:
+    //   represents a shape with location at this.location, color at this.color 
+    //   , Horizontal velocity at this.velocityX and vertical velocity at this.velocityY 
+
+    // Representation Invariant:
+    //   location != NULL, color != NULL 
+    //   location.width && location.height > 0 
+	//   horizontal and vertical velocities are integers between -5 to 5 but NOT 0
+
+	
+	
+	/**
+     * Checks to see if the representation invariant is being violated.
+     * @throws AssertionError if representation invariant is violated.
+     */ 
+    private void checkRep() {
+    	assert location != null && color !=null : "location or color or both is null";
+    	assert location.x >= 0 && location.y >= 0 : "location.x or location.y or both < 0";
+    	assert(velocityX <= 5 && velocityX >= -5 && velocityX != 0) : " velocityX has violated the represntation invariant";
+    	assert(velocityY <= 5 && velocityY >= -5 && velocityY != 0) : " velocityY has violated the represntation invariant";
+    }
+    
+
+    /**
+     * @effects Initializes this with a given location and color. Each
+     *          of the horizontal and vertical velocities of the new
+     *          object is set to a random integral value i such that
+     *          -5 <= i <= 5 and i != 0
+     */
+	ColorAndLocationChangingShape(Point location, Color color) {
+        super(location,color);
+        checkRep();
+    }
+
+    /**
+     * @modifies this
+     * @effects Changes the location of this as described in the specification
+     *          of LocationChangingShape.step(Rectangle bound) &&
+	 *			if the velocity of this needs to be changed (as described in LocationChangingShape.step(Rectangle bound)),
+	 *			changes the color of this to a new random color;
+	 *			else, does not change the color of this.
+     */
+    public void step(Rectangle bound) {
+    	checkRep();
+        Rectangle boudingRectangle = this.getBounds();
+        Rectangle newBoundingRectangle = this.getNewRectangle();
+        if(boudingRectangle.contains(bound) == false || newBoundingRectangle.contains(bound) == false ) {  // part of r is outside bound or 
+        	// r is within bound but adding v to p would bring part of r outside bound
+        	Random random = new Random(); 
+        	int red = random.nextInt(256);
+        	int green = random.nextInt(256);
+        	int blue = random.nextInt(256);
+        	Color randomColor = new Color(red, green, blue);
+        	this.setColor(randomColor);
+            if( (newBoundingRectangle.getX() > bound.getCenterX() && bound.getCenterX() > 0) || 
+            		newBoundingRectangle.getX() < bound.getCenterX() && bound.getCenterX() < 0 ) {
+            	velocityX = -velocityX;
+            }
+            if( (newBoundingRectangle.getX() > bound.getCenterX() && bound.getCenterX() > 0) || 
+            		newBoundingRectangle.getX() < bound.getCenterX() && bound.getCenterX() < 0) {
+            	velocityY = -velocityY;
+            }
+        }
+        else { //  r is inside bound
+        	setLocation(newBoundingRectangle.getLocation());
+        }
+        checkRep();
+    }
+    
+    
+    /**
+     * @effects Creates and returns a copy of this.
+     */
+    @Override
+    public Object clone() {
+    	checkRep();
+    	ColorAndLocationChangingShape copyObject = (ColorAndLocationChangingShape)super.clone();
+    	copyObject.checkRep();
+        return copyObject;
+    }
+}

@@ -1,0 +1,81 @@
+package homework1;
+
+import java.awt.*;
+
+
+/**
+ * A LocationAndColorChangingTriangle is a Triangle that can change its location and color using its step()
+ * method.
+ * Thus, a typical LocationAndColorChangingTriangle consists of the following set of
+ * properties: {location, color, shape, size, velocity}
+ */
+public class LocationAndColorChangingTriangle extends ColorAndLocationChangingShape {
+	
+	private Rectangle size;
+	
+	// Abstraction Function:
+    //   represents a shape with location at this.location, color at this.color, size = width*height at this.size,  
+    //   Horizontal velocity at this.velocityX and vertical velocity at this.velocityY 
+
+    // Representation Invariant:
+    //   location != NULL, color != NULL 
+    //   size width > 0 && size height > 0 
+	//   horizontal and vertical velocities are integers between -5 to 5 but NOT 0
+
+	
+	
+	/**
+     * Checks to see if the representation invariant is being violated.
+     * @throws AssertionError if representation invariant is violated.
+     */ 
+    private void checkRep() {
+    	assert (location != null && color !=null ) : "location or color or both is null";
+    	assert (size.height > 0 && size.width > 0) : "height or width of Oval are negative";
+    	assert (velocityX <= 5 && velocityX >= -5 && velocityX != 0) : " velocityX has violated the represntation invariant";
+    	assert (velocityY <= 5 && velocityY >= -5 && velocityY != 0) : " velocityY has violated the represntation invariant";
+    }
+    
+
+    /**
+     * @effects Initializes this with a given location and color. Each
+     *          of the horizontal and vertical velocities of the new
+     *          object is set to a random integral value i such that
+     *          -5 <= i <= 5 and i != 0
+     */
+    LocationAndColorChangingTriangle(Point location, Color color) {
+        super(location,color);
+    }
+	
+	/**
+     * @modifies this
+     * @effects Resizes this so that its bounding rectangle has the specified
+     *          dimension.
+     *          If this cannot be resized to the specified dimension =>
+     *          this is not modified, throws ImpossibleSizeException
+     *          (the exception suggests an alternative dimension that is
+     *           supported by this).
+     */
+    public void setSize(Dimension dimension) throws ImpossibleSizeException {
+    	
+    }
+        
+	
+	
+	 /**
+     * @return the bounding rectangle of this.
+     */
+    public Rectangle getBounds() {
+    	
+    }
+
+	
+	/**
+     * @modifies g
+     * @effects Draws this onto g.
+     */
+    public void draw(Graphics g) {
+    	
+    }
+
+
+}

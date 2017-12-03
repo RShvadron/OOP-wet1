@@ -1,0 +1,28 @@
+package homework1;
+
+import java.awt.*;
+
+/**
+ * A AngleChangingSector is an abstraction of a Oval changing sector object. A typical Shape consists of
+ * a set of properties: {location, color, shape, size}.
+ */
+public class AngleChangingSector extends Shape implements Animatable{
+	
+	
+	// Abstraction Function:
+    //   represents a shape with location = (x,y) (point on Two-dimensional space) at this.location   
+    //   and a color at this.color
+
+    // Representation Invariant:
+    //   location != NULL, color != NULL 
+    
+    
+    /**
+     * Checks to see if the representation invariant is being violated.
+     * @throws AssertionError if representation invariant is violated.
+     */ 
+	private void checkRep() {
+		
+	}
+
+}

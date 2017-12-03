@@ -1,0 +1,81 @@
+package homework1;
+
+import java.awt.*;
+
+
+/**
+ * A LocationChangingOval is a Oval(type of Shape) that can change its location using its step()
+ * method. A LocationChangingOval has a velocity property that determines the speed
+ * of location changing.
+ * Thus, a typical LocationChangingOval consists of the following set of
+ * properties: {location, color, shape, size(specific for Oval), velocity}
+ */
+public class LocationChangingOval extends LocationChangingShape {
+	
+	private Dimension size;
+	
+	// Abstraction Function:
+    //   represents a shape with location at this.location, color at this.color, size at this.size,  
+    //   Horizontal velocity at this.velocityX and vertical velocity at this.velocityY 
+
+    // Representation Invariant:
+    //   location != NULL, color != NULL 
+    //   location.width && location.height > 0 
+	//   horizontal and vertical velocities are integers between -5 to 5 but NOT 0
+
+	
+	/**
+     * Checks to see if the representation invariant is being violated.
+     * @throws AssertionError if representation invariant is violated.
+     */ 
+    private void checkRep() {
+    	assert (location != null && color !=null ): "location or color or both is null";
+    	assert (location.x >= 0 && location.y >= 0 ): "location.x or location.y or both < 0";
+    	assert (velocityX <= 5 && velocityX >= -5 && velocityX != 0) : " velocityX has violated the represntation invariant";
+    	assert (velocityY <= 5 && velocityY >= -5 && velocityY != 0) : " velocityY has violated the represntation invariant";
+    }
+	
+	
+    /**
+     * @effects Initializes this with a a given location and color. Each
+     *          of the horizontal and vertical velocities of the new
+     *          object is set to a random integral value i such that
+     *          -5 <= i <= 5 and i != 0
+     */
+    LocationChangingOval(Point location, Color color) {
+    	super(location,color);
+    	checkRep();
+    }
+    
+    
+    /**
+     * @modifies this
+     * @effects Resizes this so that its bounding rectangle has the specified
+     *          dimension.
+     *          If this cannot be resized to the specified dimension =>
+     *          this is not modified, throws ImpossibleSizeException
+     *          (the exception suggests an alternative dimension that is
+     *           supported by this).
+     */
+    public void setSize(Dimension dimension) {
+    	
+    }
+    
+    
+    /**
+     * @return the bounding rectangle of this.
+     */
+    public Rectangle getBounds() {
+    	
+    }
+    
+    
+    /**
+     * @modifies g
+     * @effects Draws this onto g.
+     */
+    public void draw(Graphics g) {
+    	
+    }
+
+}

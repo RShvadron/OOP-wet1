@@ -1,0 +1,17 @@
+package homework1;
+
+import java.awt.*;
+
+
+
+/**
+ * A ColorAndLocationChaningShape is a Shape that can change its location and color using its step()
+ * method.
+ * Thus, a typical LocationChaningShape consists of the following set of
+ * properties: {location, color, shape, size, velocity}
+ */
+public class LocationChangingOval extends LocationChangingShape {
+	
+	
+
+}
